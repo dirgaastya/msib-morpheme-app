@@ -1,51 +1,66 @@
 <script setup lang="ts">
-import type { VMenuItem } from '@morpheme/menus/dist/types/VMenus.vue'
+import { breakpointsTailwind } from '@vueuse/core'
 
-export interface MenuItem extends VMenuItem {
-  isActive?: () => boolean
-  isExternal?: boolean
-}
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const isMobile = breakpoints.smaller('sm') // only smaller than lg
+const isAsideOpen = ref(true)
+const isMini = ref(false)
 
-const route = useRoute()
-
-const activeByHash = (hash: string) => route.hash === hash
-
-const menus = ref<MenuItem[]>([
-  {
-    text: 'menu.home',
-    to: '/',
-    isActive() {
-      return route.path === '/' && !route.hash
-    },
-  },
-  {
-    text: 'menu.features',
-    to: '/#features',
-    isActive() {
-      return activeByHash('#features')
-    },
-  },
-  {
-    text: 'menu.internalization',
-    to: '/i18n',
-  },
-  {
-    text: 'menu.docs',
-    href: 'https://gitsindonesia.github.io/ui-component/',
-    newTab: true,
-    isExternal: true,
-  },
-])
+watchEffect(() => {
+  isAsideOpen.value = !isMobile.value
+})
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
-    <LandingHeader :menus="menus" />
+  <VAppShell padded-content>
+    <!-- header -->
+    <template #header>
+      <VAppBar v-model="isMobile">
+        Hello World
+      </VAppBar>
+    </template>
+    <template #navigation>
+      <AppBreadcrumbs />
+    </template>
+    <!-- aside -->
+    <template #aside>
+      <VNavDrawer
+        v-model:mini="isMini"
+        v-model="isAsideOpen"
+        :fixed="isMobile"
+        :overlay="isMobile"
+        :close-on-overlay-click="isMobile"
+        :class="{ 'z-20 !w-10/12 sidebar': isMobile }"
+        style="min-height: 100%;"
+        bordered
+      >
+        <div :class="`flex justify-between items-center ${isMini ? 'p-1' : 'ps-6 pe-3 py-3'}`">
+          <VLogo v-if="!isMini" />
+          <VBtn text icon @click="isMini = !isMini">
+            <VIcon name="quill:hamburger" />
+          </VBtn>
+        </div>
+        <NavDrawerItems />
+      </VNavDrawer>
+    </template>
 
-    <div class="flex-1">
-      <slot />
-    </div>
+    <!-- footer -->
+    <template #content.after>
+      <VText variant="sm" color="gray.500" class="mt-4">
+        Copyright &copy; 2023 &middot; All rights reserved.
+      </VText>
+    </template>
 
-    <LandingFooter />
-  </div>
+    <!-- content -->
+    <slot />
+  </VAppShell>
 </template>
+
+<style lang="scss">
+ .v-app-shell-content {
+    background: #f9fafb;
+}
+aside .nav-drawer{
+    height:100% !important;
+}
+</style>

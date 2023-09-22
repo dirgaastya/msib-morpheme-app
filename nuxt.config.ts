@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     prefetch: true,
     preconnect: true,
     families: {
-      Inter: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      Poppins: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
   },
 
@@ -88,6 +88,9 @@ export default defineNuxtConfig({
   extends: [
     // comment this line to disable the default nuxt layer
     './_landing',
+  ],
+  plugins: [
+    { src: '~/plugins/VueQuill.client.ts', ssr: false },
   ],
 
   devtools: {

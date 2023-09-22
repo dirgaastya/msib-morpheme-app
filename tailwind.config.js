@@ -44,7 +44,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          'Inter',
+          'Poppins',
           ...defaultTheme.fontFamily.sans,
         ],
       },
