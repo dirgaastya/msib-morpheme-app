@@ -10,10 +10,7 @@ definePageMeta({
     },
   ] as VBreadcrumbItemProps[],
 })
-const states = ['active', 'inactive']
 const selectedTab = ref(0)
-
-const items = []
 
 const headers = ref<VDataTableHeader[]>([
   {
@@ -56,12 +53,12 @@ const tabs = ref([
     Monitor your transaction here
   </ContentHeader>
   <VCard>
-    <VTabs v-model="selectedTab" :items="tabs" />
+    <VTabs v-model="selectedTab" color="morning-glory" :items="tabs" />
     <VText font-weight="semibold" variant="xl" class="my-3">
       {{ tabs[selectedTab].text }}
     </VText>
-    <VDataTable v-show="selectedTab === 0" :items="items" :headers="headers" />
-    <VDataTable v-show="selectedTab === 1" :items="items" :headers="headers" />
-    <VDataTable v-show="selectedTab === 2" :items="items" :headers="headers" />
+    <VDataTable v-show="selectedTab === 0" :items="[]" :headers="headers" />
+    <VDataTable v-show="selectedTab === 1" :items="[]" :headers="headers" />
+    <VDataTable v-show="selectedTab === 2" :items="[]" :headers="headers" />
   </VCard>
 </template>

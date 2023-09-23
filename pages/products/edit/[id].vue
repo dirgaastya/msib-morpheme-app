@@ -11,6 +11,7 @@ const category = ref('')
 const description = ref('')
 const price = ref(0)
 const showAlert = ref(false)
+const { id } = useRoute().params
 
 const schema = object({
   image: mixed().required().label('Image'),
@@ -24,9 +25,17 @@ const { handleSubmit, resetForm } = useForm({
 })
 
 const onSubmit = handleSubmit((values) => {
-  useProductStore().addProduct(values)
+  useProductStore().editProduct(Number(id), values)
   showAlert.value = true
   resetForm()
+})
+
+onMounted(() => {
+  useProductStore().getSingleProduct(Number(id))
+  title.value = useProductStore().product.title
+  price.value = useProductStore().product.price
+  category.value = useProductStore().product.category
+  description.value = useProductStore().product.description
 })
 
 setTimeout(() => {
@@ -40,19 +49,19 @@ definePageMeta({
       to: '/products',
     },
     {
-      title: 'Add Item',
-      to: '/products/create',
+      title: 'Edit Item',
+      to: '/products/edit/',
     },
   ] as VBreadcrumbItemProps[],
 })
 </script>
 
 <template>
-  <ContentHeader title="Add Product" :button="true" to="/products">
-    Add Product
+  <ContentHeader title="Edit Product" :button="true" to="/products">
+    Edit Product
   </ContentHeader>
   <VAlert v-if="showAlert" color="success" class="mb-6">
-    Product Added Successfully
+    Product Edited Successfully
   </VAlert>
   <ClientOnly placeholder="Loading...">
     <VCard>

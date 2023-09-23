@@ -27,8 +27,8 @@ const items = computed<VBreadcrumbItemProps[]>(() => {
 
 <style lang="scss">
 :root {
-    --breadcrumbs-item-active-color: var(--color-indigo-500);
-    --breadcrumbs-item-active-bg-color: var(--color-indigo-50);
-    --breadcrumbs-item-hover-color: var(--color-indigo-500);
+    --breadcrumbs-item-active-color: var(--color-morning-glory-500);
+    --breadcrumbs-item-active-bg-color: var(--color-morning-glory-100);
+    --breadcrumbs-item-hover-color: var(--color-morning-glory-500);
 }
 </style>

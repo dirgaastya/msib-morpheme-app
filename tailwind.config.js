@@ -37,10 +37,23 @@ module.exports = {
       colors: {
         primary,
         secondary,
-        info: colors.sky,
-        success: colors.emerald,
-        warning: colors.yellow,
-        error: colors.rose,
+        'info': colors.sky,
+        'success': colors.emerald,
+        'warning': colors.yellow,
+        'error': colors.rose,
+        'morning-glory': {
+          50: '#f0fafb',
+          100: '#d9f2f4',
+          200: '#a1dbe2',
+          300: '#87d0d9',
+          400: '#4eb2c2',
+          500: '#3396a7',
+          600: '#2d7a8d',
+          700: '#2a6474',
+          800: '#2a5360',
+          900: '#274652',
+          950: '#152d37',
+        },
       },
       fontFamily: {
         sans: [

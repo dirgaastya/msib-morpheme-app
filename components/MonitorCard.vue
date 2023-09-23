@@ -26,6 +26,8 @@ defineProps({
     <VText variant="display-xs" font-weight="semibold">
       {{ metric.value }}
     </VText>
-    <VText>{{ metric.footer }}</VText>
+    <VText color="gray.400">
+      {{ metric.footer }}
+    </VText>
   </VCard>
 </template>

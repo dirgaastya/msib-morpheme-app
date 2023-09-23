@@ -19,6 +19,7 @@ export interface IAddProduct {
   category: string
   description: string
 }
+
 export const headers = ref<VDataTableHeader[]>([
   {
     value: 'thumbnail',
@@ -27,7 +28,7 @@ export const headers = ref<VDataTableHeader[]>([
   {
     value: 'title',
     text: 'Name',
-
+    tdClass: 'capitalize',
   },
   {
     value: 'price',

@@ -24,7 +24,7 @@ const items: NavItems[] = [
 </script>
 
 <template>
-  <VList>
+  <VList class="space-y-1">
     <VListItem
       v-for="(item, index) in items"
       :key="index"

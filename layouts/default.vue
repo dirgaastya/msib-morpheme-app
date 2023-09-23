@@ -5,6 +5,7 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 const isMobile = breakpoints.smaller('sm') // only smaller than lg
 const isAsideOpen = ref(true)
 const isMini = ref(false)
+const colorMode = useColorMode()
 
 watchEffect(() => {
   isAsideOpen.value = !isMobile.value
@@ -32,11 +33,12 @@ watchEffect(() => {
         :close-on-overlay-click="isMobile"
         :class="{ 'z-20 !w-10/12 sidebar': isMobile }"
         style="min-height: 100%;"
+        color="morning-glory"
         bordered
       >
         <div :class="`flex justify-between items-center ${isMini ? 'p-1' : 'ps-6 pe-3 py-3'}`">
           <VLogo v-if="!isMini" />
-          <VBtn text icon @click="isMini = !isMini">
+          <VBtn text icon color="morning-glory" @click="isMini = !isMini">
             <VIcon name="quill:hamburger" />
           </VBtn>
         </div>
@@ -57,8 +59,8 @@ watchEffect(() => {
 </template>
 
 <style lang="scss">
- .v-app-shell-content {
-    background: #f9fafb;
+.nav-drawer-morning-glory{
+    --nav-drawer-bg-color: var(--color-morning-glory-100);
 }
 aside .nav-drawer{
     height:100% !important;

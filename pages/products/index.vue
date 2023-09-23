@@ -4,7 +4,7 @@ import { useProductStore } from '~/stores/product'
 import { headers } from '~/types/product'
 
 const useProduct = useProductStore()
-
+const query = ref('')
 definePageMeta({
   breadcrumbs: [
     {
@@ -27,14 +27,17 @@ onMounted(() => {
   <VCard>
     <div class="flex items-center justify-between mb-6">
       <VInput
+        v-model="query"
+        color="morning-glory"
         prepend-icon="ri:search-line"
         placeholder="Search..."
+        @keyup.enter=" useProduct.searchProducts(query)"
       />
-      <VBtn prefix-icon="tabler:plus" to="/products/create">
+      <VBtn color="morning-glory" prefix-icon="tabler:plus" to="/products/create">
         Add Item
       </VBtn>
     </div>
-    <VDataTable :loading="useProduct.loading" :items="useProduct.products" :headers="headers">
+    <VDataTable :loading="useProduct.loading" :items="useProduct.filteredProducts" :headers="headers">
       <template #item.thumbnail="{ item }">
         <img
           :src="item.thumbnail"
@@ -53,6 +56,6 @@ onMounted(() => {
   </VCard>
 </template>
 
-<style scoped>
+<style lang="scss">
 
 </style>
