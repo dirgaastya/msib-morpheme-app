@@ -6,6 +6,7 @@ const isMobile = breakpoints.smaller('sm') // only smaller than lg
 const isAsideOpen = ref(true)
 const isMini = ref(false)
 const colorMode = useColorMode()
+console.log(colorMode.value)
 
 watchEffect(() => {
   isAsideOpen.value = !isMobile.value
@@ -37,7 +38,7 @@ watchEffect(() => {
         bordered
       >
         <div :class="`flex justify-between items-center ${isMini ? 'p-1' : 'ps-6 pe-3 py-3'}`">
-          <VLogo v-if="!isMini" />
+          <VLogo v-if="!isMini" :white="colorMode.value === 'dark'" />
           <VBtn text icon color="morning-glory" @click="isMini = !isMini">
             <VIcon name="quill:hamburger" />
           </VBtn>
@@ -61,6 +62,12 @@ watchEffect(() => {
 <style lang="scss">
 .nav-drawer-morning-glory{
     --nav-drawer-bg-color: var(--color-morning-glory-100);
+}
+.dark{
+    .nav-drawer-morning-glory{
+    --nav-drawer-bg-color: var(--color-gray-true-800);
+    --nav-drawer-border-color: var(--color-gray-true-700);
+}
 }
 aside .nav-drawer{
     height:100% !important;
