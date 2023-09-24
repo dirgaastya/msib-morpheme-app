@@ -6,7 +6,6 @@ const isMobile = breakpoints.smaller('sm') // only smaller than lg
 const isAsideOpen = ref(true)
 const isMini = ref(false)
 const colorMode = useColorMode()
-console.log(colorMode.value)
 
 watchEffect(() => {
   isAsideOpen.value = !isMobile.value
@@ -17,8 +16,13 @@ watchEffect(() => {
   <VAppShell padded-content>
     <!-- header -->
     <template #header>
-      <VAppBar v-model="isMobile">
-        Hello World
+      <VAppBar v-model="isMobile" color="morning-glory">
+        <div class="w-full flex justify-between items-center">
+          <VLogo white />
+          <VBtn text icon color="morning-glory">
+            <VIcon name="quill:hamburger" />
+          </VBtn>
+        </div>
       </VAppBar>
     </template>
     <template #navigation>

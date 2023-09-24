@@ -53,6 +53,9 @@
     .v-app-shell-content {
         background: var(--color-morning-glory-50);
     }
+    .app-bar-morning-glory{
+        --app-bar-bg-color: var(--color-morning-glory-300);
+    }
     .v-list-item{
         --v-list-item-hover-bg-color: var(--color-morning-glory-200);
     }

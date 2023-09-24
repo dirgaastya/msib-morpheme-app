@@ -38,7 +38,7 @@ const metrics: IMetrics[] = [
   <ContentHeader title="Dashboard">
     Monitor your metrics for shipping, transactions, product and many more in here
   </ContentHeader>
-  <div class="grid grid-cols-4 gap-x-6">
+  <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-x-6">
     <MonitorCard v-for="(metric, index) in metrics" :key="index" :metric="metric" />
   </div>
 </template>

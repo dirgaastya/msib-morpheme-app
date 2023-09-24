@@ -34,7 +34,7 @@ onMounted(() => {
         @keyup.enter=" useProduct.searchProducts(query)"
       />
       <VBtn color="morning-glory" prefix-icon="tabler:plus" to="/products/create">
-        Add Item
+        <span class="hidden md:block">Add Item</span>
       </VBtn>
     </div>
     <VDataTable :loading="useProduct.loading" :items="useProduct.filteredProducts" :headers="headers">
